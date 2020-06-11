@@ -46,9 +46,17 @@ class Paddle(pygame.sprite.Sprite):
 
     def move_down(self):
         """Update the paddle's position to move down the screen."""
-        self.rect.y = self.rect.y + MOVEMENT_RATE
+        new_position = self.rect.y + MOVEMENT_RATE
+        if new_position < pygame.display.get_surface().get_height() - self.rect.height:
+            self.rect.y = new_position
+        else:
+            self.rect.y = pygame.display.get_surface().get_height() - self.rect.height
 
     def move_up(self):
         """Update the paddle's position to move up the screen."""
-        self.rect.y = self.rect.y - MOVEMENT_RATE
+        new_position = self.rect.y - MOVEMENT_RATE
+        if new_position > 0:
+            self.rect.y = new_position
+        else:
+            self.rect.y = 0
         
